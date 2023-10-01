@@ -10,7 +10,7 @@ import SwiftUI
 
 
 struct ContentView: View {
-    @StateObject var viewModel = InvoiceViewModel()
+    @StateObject var viewModel = InvoiceViewModel(repository:RemoteDataSource())
     
     var body: some View {
         VStack {

@@ -10,11 +10,12 @@ import XCTest
 @testable import haveFun
 
 class InvoiceViewModelTest: XCTestCase {
+    
     var viewModel: InvoiceViewModel!
 
     override func setUp() {
         super.setUp()
-        viewModel = InvoiceViewModel()
+        viewModel = InvoiceViewModel(repository: MockedDataSource())
     }
 
     override func tearDown() {
@@ -28,7 +29,7 @@ class InvoiceViewModelTest: XCTestCase {
 
         //check it's checked
         XCTAssertTrue(viewModel.invoiceList[0].isChecked)
-        XCTAssertEqual(viewModel.totalAmountToPay, 10.2)
+        XCTAssertEqual(viewModel.totalAmountToPay, 10.0)
 
     }
     
@@ -49,7 +50,7 @@ class InvoiceViewModelTest: XCTestCase {
             XCTAssertTrue(invoice.isChecked)
         }
         
-        XCTAssertEqual(viewModel.totalAmountToPay, 332.12)
+        XCTAssertEqual(viewModel.totalAmountToPay, 110.5)
     }
     
     func testSelectAllShouldDisplayZeroWhenAllInvoicesAreDeselected() {

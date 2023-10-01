@@ -17,6 +17,9 @@
 		F2589CB82AC99C2600EE4F04 /* InvoiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2589CB72AC99C2600EE4F04 /* InvoiceViewModel.swift */; };
 		F2589CBA2AC99C9900EE4F04 /* Invoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2589CB92AC99C9900EE4F04 /* Invoice.swift */; };
 		F2589CBC2AC99E8A00EE4F04 /* InvoiceViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2589CBB2AC99E8A00EE4F04 /* InvoiceViewModelTest.swift */; };
+		F2589CBE2AC9A16200EE4F04 /* InvoiceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2589CBD2AC9A16200EE4F04 /* InvoiceRepository.swift */; };
+		F2589CC02AC9A1E500EE4F04 /* RemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2589CBF2AC9A1E500EE4F04 /* RemoteDataSource.swift */; };
+		F2589CC22AC9A26600EE4F04 /* MockedRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2589CC12AC9A26600EE4F04 /* MockedRemoteDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +53,9 @@
 		F2589CB72AC99C2600EE4F04 /* InvoiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceViewModel.swift; sourceTree = "<group>"; };
 		F2589CB92AC99C9900EE4F04 /* Invoice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Invoice.swift; sourceTree = "<group>"; };
 		F2589CBB2AC99E8A00EE4F04 /* InvoiceViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceViewModelTest.swift; sourceTree = "<group>"; };
+		F2589CBD2AC9A16200EE4F04 /* InvoiceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceRepository.swift; sourceTree = "<group>"; };
+		F2589CBF2AC9A1E500EE4F04 /* RemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteDataSource.swift; sourceTree = "<group>"; };
+		F2589CC12AC9A26600EE4F04 /* MockedRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedRemoteDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +112,8 @@
 				F2589C932AC9814300EE4F04 /* Preview Content */,
 				F2589CB72AC99C2600EE4F04 /* InvoiceViewModel.swift */,
 				F2589CB92AC99C9900EE4F04 /* Invoice.swift */,
+				F2589CBD2AC9A16200EE4F04 /* InvoiceRepository.swift */,
+				F2589CBF2AC9A1E500EE4F04 /* RemoteDataSource.swift */,
 			);
 			path = haveFun;
 			sourceTree = "<group>";
@@ -123,6 +131,7 @@
 			children = (
 				F2589C9E2AC9814300EE4F04 /* haveFunTests.swift */,
 				F2589CBB2AC99E8A00EE4F04 /* InvoiceViewModelTest.swift */,
+				F2589CC12AC9A26600EE4F04 /* MockedRemoteDataSource.swift */,
 			);
 			path = haveFunTests;
 			sourceTree = "<group>";
@@ -268,7 +277,9 @@
 			files = (
 				F2589C902AC9814200EE4F04 /* ContentView.swift in Sources */,
 				F2589CBA2AC99C9900EE4F04 /* Invoice.swift in Sources */,
+				F2589CBE2AC9A16200EE4F04 /* InvoiceRepository.swift in Sources */,
 				F2589C8E2AC9814200EE4F04 /* haveFunApp.swift in Sources */,
+				F2589CC02AC9A1E500EE4F04 /* RemoteDataSource.swift in Sources */,
 				F2589CB82AC99C2600EE4F04 /* InvoiceViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -277,6 +288,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2589CC22AC9A26600EE4F04 /* MockedRemoteDataSource.swift in Sources */,
 				F2589CBC2AC99E8A00EE4F04 /* InvoiceViewModelTest.swift in Sources */,
 				F2589C9F2AC9814300EE4F04 /* haveFunTests.swift in Sources */,
 			);
