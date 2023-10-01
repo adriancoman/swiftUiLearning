@@ -38,6 +38,22 @@ class InvoiceViewModelTest: XCTestCase {
         XCTAssertFalse(isEmpty)
     }
     
+    func testHaveDueAmountShouldReturnTrueWhenDueAmountIsGreaterThanZero() {
+        viewModel.downloadInvoiceList()
+        viewModel.toggleSelectAll()
+        
+        XCTAssertTrue(viewModel.haveDueAmount)
+    }
+    
+    func testHaveDueAmountShouldReturnFalseWhenDueAmountIsEqualToZero() {
+        viewModel.downloadInvoiceList()
+        viewModel.toggleSelectAll()
+        viewModel.toggleSelectAll()
+        
+        XCTAssertFalse(viewModel.haveDueAmount)
+        
+    }
+    
     func testToggleInvoiceSelectionShouldUpdateTheDueAmountWhenISelect() {
         viewModel.downloadInvoiceList()
         
