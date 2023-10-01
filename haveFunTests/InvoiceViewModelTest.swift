@@ -99,4 +99,10 @@ class InvoiceViewModelTest: XCTestCase {
         
         XCTAssertEqual(viewModel.totalAmountToPay, 0)
     }
+    
+    func testToggleInvoiceSelectionShouldNotCrashWhenInvoiceListIsEmpty() {
+        viewModel.toggleInvoiceSelection(at: 0)
+
+    }
+    
 }
