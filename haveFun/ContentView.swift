@@ -7,76 +7,16 @@
 
 import SwiftUI
 
-struct Invoice: Identifiable {
-    let id = UUID()
-    let dueAmount: Double
-    let dueDate: Date
-    let providerUrl: String
-    let locationName: String
-    let locationIcon: String
-    var isChecked: Bool = false
-}
+
 
 struct ContentView: View {
-    @State private var totalAmountToPay: Double = 0.0
-    @State private var selectAll: Bool = false
-
-    @State var invoiceList = [
-        Invoice(
-            dueAmount: 10.2,
-            dueDate: Date(),
-            providerUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Telekom_Logo_2013.svg/2560px-Telekom_Logo_2013.svg.png",
-            locationName: "Acasa",
-            locationIcon:"https://cdn-icons-png.flaticon.com/512/25/25694.png"
-        ),
-        Invoice(
-            dueAmount: 20.42,
-            dueDate: Date(),
-            providerUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Telekom_Logo_2013.svg/2560px-Telekom_Logo_2013.svg.png",
-            locationName: "Buni <3",
-            locationIcon:"https://cdn-icons-png.flaticon.com/512/25/25694.png"
-       ),
-        Invoice(
-            dueAmount: 100.5,
-            dueDate: Date(),
-            providerUrl: "https://newspascani.com/wp-content/uploads/2019/12/Logo-Enel.png",
-            locationName: "Brasov",
-            locationIcon:"https://cdn-icons-png.flaticon.com/512/25/25694.png"
-        ),
-        Invoice(
-            dueAmount: 100.5,
-            dueDate: Date(),
-            providerUrl: "https://newspascani.com/wp-content/uploads/2019/12/Logo-Enel.png",
-            locationName: "Pantelimon",
-            locationIcon:"https://cdn-icons-png.flaticon.com/512/25/25694.png"
-        ),
-        Invoice(
-            dueAmount: 100.5,
-            dueDate: Date(),
-            providerUrl: "https://static.wikia.nocookie.net/logopedia/images/f/ff/Digi_RCSRDS.svg/revision/latest/scale-to-width-down/250?cb=20220908200103",
-            locationName: "Pantelimon",
-            locationIcon:"https://cdn-icons-png.flaticon.com/512/25/25694.png"
-        ),
-    ]
+    @StateObject var viewModel = InvoiceViewModel()
     
     var body: some View {
         VStack {
             HStack {
-                Button(action: {
-                    selectAll.toggle()
-                    if selectAll {
-                        for index in invoiceList.indices {
-                            invoiceList[index].isChecked = true
-                        }
-                        totalAmountToPay = invoiceList.map { $0.dueAmount }.reduce(0, +)
-                    } else {
-                        for index in invoiceList.indices {
-                            invoiceList[index].isChecked = false
-                        }
-                        totalAmountToPay = 0.0
-                    }
-                }) {
-                    Image(systemName: selectAll ? "checkmark.square" : "square")
+                Button(action: viewModel.toggleSelectAll) {
+                    Image(systemName: viewModel.selectAll ? "checkmark.square" : "square")
                         .frame(width: 20, alignment: .leading)
                     Text("Select All")
                         .font(Font.custom("SF Pro Text", size: 13))
@@ -85,15 +25,18 @@ struct ContentView: View {
                 .padding(.leading, 16)
                 Spacer()
             }
-            List(invoiceList.indices, id: \.self) { index in
-                InvoiceCell(invoice: $invoiceList[index], totalAmountToPay: $totalAmountToPay)
+            List(viewModel.invoiceList.indices, id: \.self) { index in
+                InvoiceCell(
+                    invoice: $viewModel.invoiceList[index],
+                    totalAmountToPay: $viewModel.totalAmountToPay
+                )
             }
             Spacer() // Pushes the button to the bottom
             
             Button(action: {
                 // Your button action here
             }) {
-                Text("Pay \(totalAmountToPay, specifier: "%.2f") Lei")
+                Text("Pay \(viewModel.totalAmountToPay, specifier: "%.2f") Lei")
                     .foregroundColor(.white) // White text
                     .padding() // Padding around the text
                     .frame(maxWidth: .infinity) // Makes the button full width

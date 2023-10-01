@@ -15,6 +15,8 @@
 		F2589CA92AC9814400EE4F04 /* haveFunUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2589CA82AC9814400EE4F04 /* haveFunUITests.swift */; };
 		F2589CAB2AC9814400EE4F04 /* haveFunUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2589CAA2AC9814400EE4F04 /* haveFunUITestsLaunchTests.swift */; };
 		F2589CB82AC99C2600EE4F04 /* InvoiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2589CB72AC99C2600EE4F04 /* InvoiceViewModel.swift */; };
+		F2589CBA2AC99C9900EE4F04 /* Invoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2589CB92AC99C9900EE4F04 /* Invoice.swift */; };
+		F2589CBC2AC99E8A00EE4F04 /* InvoiceViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2589CBB2AC99E8A00EE4F04 /* InvoiceViewModelTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +48,8 @@
 		F2589CA82AC9814400EE4F04 /* haveFunUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = haveFunUITests.swift; sourceTree = "<group>"; };
 		F2589CAA2AC9814400EE4F04 /* haveFunUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = haveFunUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		F2589CB72AC99C2600EE4F04 /* InvoiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceViewModel.swift; sourceTree = "<group>"; };
+		F2589CB92AC99C9900EE4F04 /* Invoice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Invoice.swift; sourceTree = "<group>"; };
+		F2589CBB2AC99E8A00EE4F04 /* InvoiceViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceViewModelTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +105,7 @@
 				F2589C912AC9814300EE4F04 /* Assets.xcassets */,
 				F2589C932AC9814300EE4F04 /* Preview Content */,
 				F2589CB72AC99C2600EE4F04 /* InvoiceViewModel.swift */,
+				F2589CB92AC99C9900EE4F04 /* Invoice.swift */,
 			);
 			path = haveFun;
 			sourceTree = "<group>";
@@ -117,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				F2589C9E2AC9814300EE4F04 /* haveFunTests.swift */,
+				F2589CBB2AC99E8A00EE4F04 /* InvoiceViewModelTest.swift */,
 			);
 			path = haveFunTests;
 			sourceTree = "<group>";
@@ -261,6 +267,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2589C902AC9814200EE4F04 /* ContentView.swift in Sources */,
+				F2589CBA2AC99C9900EE4F04 /* Invoice.swift in Sources */,
 				F2589C8E2AC9814200EE4F04 /* haveFunApp.swift in Sources */,
 				F2589CB82AC99C2600EE4F04 /* InvoiceViewModel.swift in Sources */,
 			);
@@ -270,6 +277,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2589CBC2AC99E8A00EE4F04 /* InvoiceViewModelTest.swift in Sources */,
 				F2589C9F2AC9814300EE4F04 /* haveFunTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
