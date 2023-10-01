@@ -15,12 +15,27 @@ class InvoiceViewModel: ObservableObject {
     @Published var totalAmountToPay: Double = 0.0
     @Published var selectAll: Bool = false
     
+    var isInvoiceListEmpty: Bool {
+        return invoiceList.isEmpty
+    }
+    
     init(repository: InvoiceRepository) {
         self.repository = repository
+       
+    }
+    
+    var haveDueAmount: Bool {
+        return totalAmountToPay > 0.0
+    }
+    
+    func downloadInvoiceList() {
         self.invoiceList = repository.getInvoiceList()
     }
     
     func toggleInvoiceSelection(at index: Int) {
+        if (invoiceList.isEmpty) {
+            return
+        }
         invoiceList[index].isChecked.toggle()
         if invoiceList[index].isChecked {
             totalAmountToPay += invoiceList[index].dueAmount

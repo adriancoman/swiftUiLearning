@@ -22,8 +22,25 @@ class InvoiceViewModelTest: XCTestCase {
         viewModel = nil
         super.tearDown()
     }
-
+    
+    func testIsInvoiceListEmptyShouldReturnTrueWhenListIsEmpty() {
+        let isEmpty = viewModel.isInvoiceListEmpty
+        
+        //check it's checked
+        XCTAssertTrue(isEmpty)
+    }
+    
+    func testIsInvoiceListEmptyShouldReturnFalseWhenListIsNotEmpty() {
+        viewModel.downloadInvoiceList()
+        let isEmpty = viewModel.isInvoiceListEmpty
+        
+        //check it's checked
+        XCTAssertFalse(isEmpty)
+    }
+    
     func testToggleInvoiceSelectionShouldUpdateTheDueAmountWhenISelect() {
+        viewModel.downloadInvoiceList()
+        
         //10.2
         viewModel.toggleInvoiceSelection(at: 0)
 
@@ -34,6 +51,7 @@ class InvoiceViewModelTest: XCTestCase {
     }
     
     func testToggleInvoiceSelectionShouldUpdateTheDueAmountWhenISelectAndDeselect() {
+        viewModel.downloadInvoiceList()
         //10.2
         viewModel.toggleInvoiceSelection(at: 0)
         viewModel.toggleInvoiceSelection(at: 0)
@@ -44,6 +62,7 @@ class InvoiceViewModelTest: XCTestCase {
     }
     
     func testSelectAllShouldDisplayTheCorrectValueWhenAllInvoicesAreSelected() {
+        viewModel.downloadInvoiceList()
         viewModel.toggleSelectAll()
         
         for invoice in viewModel.invoiceList {
@@ -54,6 +73,7 @@ class InvoiceViewModelTest: XCTestCase {
     }
     
     func testSelectAllShouldDisplayZeroWhenAllInvoicesAreDeselected() {
+        viewModel.downloadInvoiceList()
         viewModel.toggleSelectAll()
         viewModel.toggleSelectAll()
         

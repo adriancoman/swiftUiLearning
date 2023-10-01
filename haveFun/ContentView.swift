@@ -8,42 +8,39 @@
 import SwiftUI
 
 
-
 struct ContentView: View {
     @StateObject var viewModel = InvoiceViewModel(repository:RemoteDataSource())
     
     var body: some View {
         VStack {
-            HStack {
-                Button(action: viewModel.toggleSelectAll) {
-                    Image(systemName: viewModel.selectAll ? "checkmark.square" : "square")
-                        .frame(width: 20, alignment: .leading)
-                    Text("Select All")
-                        .font(Font.custom("SF Pro Text", size: 13))
-                        .foregroundColor(Color(red: 0.09, green: 0.12, blue: 0.16))
+            if (viewModel.isInvoiceListEmpty) {
+                EmptyState (action:{
+                    viewModel.downloadInvoiceList()
+                })
+            } else {
+                HStack {
+                    Button(action: viewModel.toggleSelectAll) {
+                        Image(systemName: viewModel.selectAll ? "checkmark.square" : "square")
+                            .frame(width: 20, alignment: .leading)
+                        Text("Select All")
+                            .font(Font.custom("SF Pro Text", size: 13))
+                            .foregroundColor(Color(red: 0.09, green: 0.12, blue: 0.16))
+                    }
+                    .padding(.leading, 16)
+                    Spacer()
                 }
-                .padding(.leading, 16)
-                Spacer()
+                List(viewModel.invoiceList.indices, id: \.self) { index in
+                    InvoiceCell(
+                        invoice: $viewModel.invoiceList[index],
+                        totalAmountToPay: $viewModel.totalAmountToPay
+                    )
+                }
+                Spacer() // Pushes the button to the bottom
+                let dueAmount = "Pay \(String(format: "%.2f", viewModel.totalAmountToPay)) Lei"
+                PagoButton(text: dueAmount, isActive: viewModel.haveDueAmount, action: {
+                    //where's my money???
+                })
             }
-            List(viewModel.invoiceList.indices, id: \.self) { index in
-                InvoiceCell(
-                    invoice: $viewModel.invoiceList[index],
-                    totalAmountToPay: $viewModel.totalAmountToPay
-                )
-            }
-            Spacer() // Pushes the button to the bottom
-            
-            Button(action: {
-                // Your button action here
-            }) {
-                Text("Pay \(viewModel.totalAmountToPay, specifier: "%.2f") Lei")
-                    .foregroundColor(.white) // White text
-                    .padding() // Padding around the text
-                    .frame(maxWidth: .infinity) // Makes the button full width
-                    .background(Color.green) // Green background
-                    .cornerRadius(10) // Rounded corners
-            }
-            .padding()
         }
     }
 }
@@ -140,6 +137,50 @@ struct DueDate: View {
         formatter.dateFormat = "dd MMM"
         let formattedDate = formatter.string(from: dueDate)
         return formattedDate
+    }
+}
+
+struct EmptyState: View {
+    
+    var action: () -> Void
+    
+    var body: some View {
+        VStack {
+            Text("Adaugă primul furnizor")
+                .font(
+                    Font.custom("SF Pro Display", size: 24)
+                        .weight(.bold)
+                )
+                .multilineTextAlignment(.center)
+                .foregroundColor(Color(red: 0.09, green: 0.12, blue: 0.16))
+            Text("Și descoperă cât de simplu e să plătești toate facturile cu un singur buton")
+                .font(Font.custom("SF Pro Text", size: 17))
+                .multilineTextAlignment(.center)
+                .foregroundColor(Color(red: 0.6, green: 0.65, blue: 0.75))
+                .frame(width: 327, alignment: .top)
+                .padding(16)
+            PagoButton(text:"Adaugă furnizor!", action: action)
+        }
+    }
+}
+
+struct PagoButton: View {
+    
+    var text: String
+    var isActive: Bool = true
+    var action: () -> Void
+    
+    var body: some View {
+        Button(action: action) {
+            Text(text)
+                .foregroundColor(.white)
+                .padding()
+                .frame(maxWidth: .infinity)
+                .background(isActive ? Color(red: 0.17, green: 0.78, blue: 0.3) : Color(red: 0.76, green: 0.78, blue: 0.84))
+                .cornerRadius(12)
+                .shadow(color: .black.opacity(0.16), radius: 3, x: 0, y: 3)
+        }
+        .padding(24)
     }
 }
 
